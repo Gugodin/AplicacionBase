@@ -30,7 +30,7 @@ public class DuenioController {
         DuenioMascota duenioMascota= null;
         if (duenio != null){
             duenioMascota = new DuenioMascota(duenio.getIdDuenio(), duenio.getNombre(), duenio.getTelefono(), duenio.getDireccion());
-            Mascota[] mascotas  =restTemplate.getForObject("http://localhost:9998/listByIdDuenio/"+duenioMascota.getIdDuenio(), Mascota[].class);
+            Mascota[] mascotas  =restTemplate.getForObject("http://localhost:'9998'/listByIdDuenio/"+duenioMascota.getIdDuenio(), Mascota[].class);
             duenioMascota.setMascotas(mascotas);
         }
         return duenioMascota;
