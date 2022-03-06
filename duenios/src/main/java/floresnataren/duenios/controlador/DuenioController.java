@@ -1,20 +1,29 @@
 package floresnataren.duenios.controlador;
 
-import floresnataren.duenios.modelo.DuenioMascota;
-import floresnataren.duenios.modelo.Mascota;
+import floresnataren.duenios.modelo.*;
+import floresnataren.duenios.repositorio.UsuarioRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
-import floresnataren.duenios.modelo.Duenio;
 import floresnataren.duenios.repositorio.DuenioRepository;
 import org.springframework.web.client.RestTemplate;
 
+
+
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000/")
 public class DuenioController {
     @Autowired
     DuenioRepository duenioRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @Autowired
     RestTemplate restTemplate;
@@ -59,6 +68,8 @@ public class DuenioController {
         }
         return null;
     }
+
+
     @PostMapping(value = "/duenio/delete")
     public Boolean deleteDuenio(@RequestBody Duenio duenio){
         Duenio d = duenioRepository.findByIdDuenio(duenio.getIdDuenio());
@@ -68,4 +79,49 @@ public class DuenioController {
         }
         return null;
     }
+
+    @PostMapping(value = "/loginUser")
+    public Boolean getUser(@RequestBody UsuarioJSON usuario){
+
+        Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
+
+        System.out.println(d);
+
+        if(d != null){
+
+
+            return true;
+        }
+        return null;
+
+
+    }
+
+    private String getJWTToken(String username) {
+
+        String secretKey = "secret";
+
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_USER");
+
+        String token = Jwts
+                .builder()
+                .setId("petJWT")
+                .setSubject(username)
+                .claim("authorities",
+                        grantedAuthorities.stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 6000000))
+                .signWith(SignatureAlgorithm.HS512,
+                        secretKey.getBytes()).compact();
+
+        return "Bearer " + token;
+    }
+
+
+
+
+
 }
