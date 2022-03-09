@@ -1,6 +1,7 @@
 package floresnataren.duenios.controlador;
 
 import floresnataren.duenios.modelo.*;
+import floresnataren.duenios.repositorio.DuenioRepository;
 import floresnataren.duenios.repositorio.UsuarioRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
-import floresnataren.duenios.repositorio.DuenioRepository;
+
 import org.springframework.web.client.RestTemplate;
 
 
@@ -80,23 +81,6 @@ public class DuenioController {
         return null;
     }
 
-    @PostMapping(value = "/loginUser")
-    public Boolean getUser(@RequestBody UsuarioJSON usuario){
-
-        Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
-
-        System.out.println(d);
-
-        if(d != null){
-
-
-            return true;
-        }
-        return null;
-
-
-    }
-
     private String getJWTToken(String username) {
 
         String secretKey = "secret";
@@ -120,6 +104,23 @@ public class DuenioController {
         return "Bearer " + token;
     }
 
+
+    @PostMapping(value = "/loginUser")
+    public String getUser(@RequestBody UsuarioJSON usuario){
+
+        Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
+
+        if(d != null){
+
+            
+            return getJWTToken(d.getNombre());
+
+        }
+
+        return null;
+
+
+    }
 
 
 

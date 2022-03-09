@@ -8,4 +8,5 @@ import java.util.List;
 public interface UsuarioRepository extends CrudRepository <Usuario, Integer> {
 
     Usuario findByNombreAndPassword(String nombre,String password);
+
 }
