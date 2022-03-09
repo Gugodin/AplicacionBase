@@ -2,6 +2,7 @@ package gomezherrera.mascotas.controller;
 
 import gomezherrera.mascotas.model.Duenio;
 import gomezherrera.mascotas.model.MascotaDuenio;
+import gomezherrera.mascotas.model.MascotaU;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,14 +65,16 @@ public class MascotaController {
         return mascotaDuenio;
     }
 
+    // @EnableGlobalMethodSecurity(prePostEnabled = true)
+
     @PostMapping(value = "/mascota/nombre")
     public List<Mascota> getMascotaByNombre(@RequestBody Mascota mascota){
         return mascotaRepository.findAllByNombre(mascota.getNombre());
     }
 
     @PostMapping(value = "/mascota/add")
-    public Mascota addMascota(@RequestBody Mascota mascota){
-        return mascotaRepository.save(mascota);
+    public void addMascota(@RequestBody MascotaU mascota){
+        mascotaRepository.save(mascota);
     }
 
     @PostMapping(value = "/mascota/update")

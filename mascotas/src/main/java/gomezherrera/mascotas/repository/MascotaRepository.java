@@ -1,6 +1,7 @@
 package gomezherrera.mascotas.repository;
 
 
+import gomezherrera.mascotas.model.MascotaU;
 import org.springframework.data.repository.CrudRepository;
 import gomezherrera.mascotas.model.Mascota;
 
@@ -14,6 +15,6 @@ public interface MascotaRepository extends CrudRepository<Mascota, Integer> {
     Mascota findByIdCita(int idCita);
     Mascota findByIdMascota(int idMascota);
     List<Mascota>findAllByNombre(String nombre);
-    Mascota save(Mascota mascota);
+    MascotaU save(MascotaU mascota);
     void delete(Mascota mascota);
 }

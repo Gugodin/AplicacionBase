@@ -1,0 +1,22 @@
+
+
+.registroMascota {    
+    margin-left: 35% !important;
+    margin-top: 10% !important;
+}
+
+.registroMascota, .titulo{
+    color: black;
+    margin-left: 4%;
+
+}
+
+.registroMascota, #nombreM,#raza,#fecha,#razon{
+    color: blue;
+
+}
+
+.registroMascota #boton{
+    margin-left: 30%;
+    color: gray;
+}
