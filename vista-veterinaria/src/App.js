@@ -1,5 +1,5 @@
 import AppRouter from './Componentes/AppRouter';
-import Register from './Componentes/VistaDuenios/VistaDuenioM';
+import Register from './Componentes/VistaDuenios/VistaDuenio';
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 package floresnataren.duenios.repositorio;
 
+import floresnataren.duenios.modelo.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import floresnataren.duenios.modelo.Duenio;
 
@@ -11,5 +12,6 @@ public interface DuenioRepository extends CrudRepository <Duenio, Integer> {
     Duenio findByIdDuenio(int idDuenio);
     List<Duenio>findAllByTelefono(String telefono);
     Duenio save(Duenio duenio);
+    Usuario save(Usuario user);
     void delete(Duenio duenio);
 }
