@@ -20,19 +20,22 @@ const BuscarM = (props) => {
     return (
         <div className='aniadir busc margen'>
             <h2>Buscar tipo de mascota</h2>
-                <div className="inputs">
-                    <input className='input-group-text' type='text' id='tipoM3' placeholder='Tipo de Mascota' onChange={e=>setTipo(e.target.value)}/>
-                    <button className='btn btn-dark'  onClick={()=>{
+            <div className="inputs">
+                <input className='input-group-text' type='text' id='tipoM3' placeholder='Tipo de Mascota' onChange={e=>setTipo(e.target.value)}/>
+                
+                
+                <button className='btn btn-dark'  onClick={()=>{
                         if(tipo!==''){ 
                             handleClick();
                             setTipo('');
                             document.getElementById('tipoM3').value=''
                         }
                         else alert('Rellene el formulario');
-                    }}>Actualizar</button></div>
+                    }}>Actualizar</button>
                     <button className='btn btn-dark botn2' onClick={()=>{
                         hundleClick();
-                    }}>Limpiar</button>
+                    }}>Limpiar </button>
+                </div>
                 
         </div>
     )
