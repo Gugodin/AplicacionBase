@@ -25,12 +25,14 @@ public class SecurityConfig {
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .antMatcher("/API/**")
+                    .antMatcher("/regis")
                     .cors()
                     .and()
                     .csrf()
                     .disable() // we don't need CSRF because our token is invulnerable
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "user").permitAll()
+                    .antMatchers(HttpMethod.POST,"regis").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)

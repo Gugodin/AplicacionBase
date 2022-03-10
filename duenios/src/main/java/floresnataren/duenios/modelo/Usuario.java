@@ -14,8 +14,28 @@ public class Usuario {
     private String  password;
     @Column(name = "rol")
     private String rol;
+    @Column(name = "primerNombre")
+    private String primerNombre;
+    @Column(name = "apellido")
+    private String apellido;
 
     public Usuario(){}
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -56,6 +76,8 @@ public class Usuario {
                 ", nombre='" + nombre + '\'' +
                 ", password='" + password + '\'' +
                 ", rol='" + rol + '\'' +
+                ", primerNombre='" + primerNombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 '}';
     }
 }

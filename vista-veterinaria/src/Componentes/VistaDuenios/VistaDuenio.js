@@ -8,19 +8,19 @@ export default function Register(){
     const [primerNombre, setPrimerNombre] = useState('');
     const [apellido,setApellido] = useState('');
     const [nombre,setNombre] = useState('');
-    const [contrasenia,setContrasenia] = useState('');
+    const [password,setContrasenia] = useState('');
     const [rol,setRol] = useState('');
 
 
     const handleRegister = () => {
         let usuario_JSON = {
-           primerNombre: primerNombre,
-           apellido: apellido,
-           nombre : nombre,
-           contrasenia: contrasenia,
-           rol: rol
-    
+            nombre : nombre,
+            password: password,
+            rol: rol,
+            primerNombre: primerNombre,
+            apellido: apellido    
         }
+        
         axios.post('http://localhost:18080/regis',usuario_JSON)
     
     }
@@ -45,13 +45,13 @@ export default function Register(){
                         <input type="text" class="form-control"  aria-describedby="basic-addon1"/>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="contraseña" onChange={e => setContrasenia(e.target.value)}>Contraseña</span>
+                        <span class="input-group-text" id="password" onChange={e => setContrasenia(e.target.value)}>Contraseña</span>
                         <input type="password" class="form-control"  aria-describedby="basic-addon1"/>
                     </div>
                     <select class="form-select" aria-label="Default select example" onChange={e => setRol(e.target.value)}>
                         <option selected>Tipo de usuario</option>
-                        <option value="Cliente">Cliente</option>
-                        <option value="Trabajador">Trabajador</option>
+                        <option value="DUEÑO">Cliente</option>
+                        <option value="EMPLEADO">Trabajador</option>
         
                     </select>
                    

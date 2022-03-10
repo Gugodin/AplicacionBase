@@ -3,9 +3,9 @@ package floresnataren.duenios.controlador;
 import floresnataren.duenios.modelo.DuenioMascota;
 import floresnataren.duenios.modelo.Mascota;
 import floresnataren.duenios.modelo.Usuario;
-import floresnataren.duenios.repositorio.UserRepository;
-import floresnataren.duenios.modelo.*;
 import floresnataren.duenios.repositorio.UsuarioRepository;
+import floresnataren.duenios.modelo.*;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,7 @@ public class DuenioController {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    UserRepository userRepository;
+
 
     @GetMapping(value = "/listDuenios")
     public List<Duenio> getListduenio() {
@@ -79,6 +78,11 @@ public class DuenioController {
         }
         return null;
     }
+    @PostMapping(value = "/regis")
+    public void register(@RequestBody Usuario usuario){
+        usuarioRepository.save(usuario);
+    }
+
 
 
     @PostMapping(value = "/duenio/delete")
@@ -90,10 +94,8 @@ public class DuenioController {
         }
         return null;
     }
-    @PostMapping(value = "/regis")
-    public void register(@RequestBody Usuario usuario) {
-        userRepository.save(usuario);
-    }
+
+
 
     @PostMapping(value = "/loginUser")
     public Boolean getUser(@RequestBody UsuarioJSON usuario){
