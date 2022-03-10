@@ -1,16 +1,16 @@
 import React from 'react';
 import './assets/css/estilos.css';
 import ProductoImagen from './ProductoImagen';
-import img from './assets/Imagenes/mascotas.png';
+import img from './assets/Imagenes/mascotas_logo.png';
 import { Link, NavLink } from 'react-router-dom';
 export default function NavBar() {
     return (
         <div className='MenuVeterinaria'>
             <div className="logo">
                 <ProductoImagen url={img} clase='imgLogo'/>
-                <p className='tituloHeader'>Veterinaria "El pulgas"</p>
+                <p className='tituloHeader'>Veterinaria "Medipet"</p>
             </div>
-            <nav className="">
+            <nav className="MenuBotones">
             <div className="botones" id="navbarNavAltMarkup">
                 <Link to="/" className="btn btns inicio"> Inicio</Link>
                 <div className="">

@@ -48,7 +48,7 @@ export default function HomePage() {
 
                 console.log(res.data)
             
-         }
+          }
         )
     }
 
@@ -60,6 +60,7 @@ export default function HomePage() {
     return (
         <div>
             {/* <ProductoImagen url={img} clase='ImgBienvenida'/> */}
+            
             <ProductoTexto/>
 
             <div className="formudata">

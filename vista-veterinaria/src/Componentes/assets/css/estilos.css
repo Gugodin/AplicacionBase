@@ -7,26 +7,24 @@ body{
     margin: 0;
     width:100%;
     height: 70px;
-    background-color: #000;
+    background-color: rgb(19, 80, 99);
     display: flex;
 }
+
+
 .MenuVeterinaria p{
     margin: 0;
 }
 .logo{
-    width: 50%;
+    width: 30%;
     display: flex;
 }
 .logo p{
     color:#fff;
 }
-.tituloHeader{
-    margin-top: 15px !important;
-    margin-left: -150px !important;
-    font-size: 24px;
-}
+
 .MenuVeterinaria .imgLogo{
-    width: 45%;
+    width: 60%;
     margin-left: 15px !important;
 }
 
@@ -39,9 +37,22 @@ body{
 .menu .active:hover{
     background-color: gray;  
 }
+.tituloHeader{
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+    font-size: 30px;
+    width: 1500px;
+}
+.MenuBotones{
+    width: 500px;
+    position: absolute;
+    right: 0px;
+    
+}
 .botones{
     display: flex;
     margin-top: 20px;
+    
 }
 .btns{
     color: #fff !important;
