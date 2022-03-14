@@ -48,7 +48,7 @@ export default function HomePage() {
 
                 console.log(res.data)
             
-         }
+          }
         )
     }
 
@@ -60,14 +60,14 @@ export default function HomePage() {
     return (
         <div>
             {/* <ProductoImagen url={img} clase='ImgBienvenida'/> */}
+            
             <ProductoTexto/>
 
             <div className="formudata">
                     <div id='form'>
-                        <p className='titulo'>Inicio de sesion</p>
                         <input className='input-group-text texto' type="text" name="nombre" id="nombreM" placeholder='Nombre' onChange={e=>setNombre(e.target.value)}/>
+                        <br></br>
                         <input className='input-group-text texto' type="password" name="password" id="password" placeholder='Contraseña' onChange={e=>setPassword(e.target.value)}/>
-                        <a className='titulo'>Registrarse</a>
                         <br></br>
                         <button className='btn btn-dark' id='btnIniciar' onClick={()=>{
                             if(nombre!=='' && password!==''){
@@ -77,6 +77,9 @@ export default function HomePage() {
                             }
                             else{alert('Llene todos los campos')}
                         }}>Iniciar sesion</button>
+                        <br></br>
+                        <br></br>
+                        <a className='titulo'>Registrarse</a>
                     </div>
                 </div>
         </div>

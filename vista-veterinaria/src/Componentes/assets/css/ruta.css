@@ -1,13 +1,13 @@
 #form{
     /* text-align: center; */
     /* align-items: center; */
-    padding-left: 40%;
-    
+    padding-left: 42%;
+    padding-top: 5%;   
 }
 .titulo{
     text-decoration: underline;
     font-weight: bold;
-    padding-left: 6%;
+    padding-left: 6.5%;
 }
 
 #btnIniciar {
@@ -15,9 +15,17 @@
     margin-top: 1%;
 }
 
+.textoBienvenida{
+    text-align: center;
+    margin-right: 30%;
+
+}
+
 .tituloG{
     margin-top: 10%;
 }
+
+
 
 input{
     height: 200;
