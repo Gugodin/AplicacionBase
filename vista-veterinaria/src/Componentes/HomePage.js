@@ -23,15 +23,14 @@ export default function HomePage() {
 
         }
 
-        axios.post('http://localhost:18080/loginUser',data).then( (res) => {
-            
+        axios.post('http://localhost:18080/user/login',data).then( (res) => {
+            console.log('Envio peticion')
 
             if (res.data){
                 
                 console.log(`ES DATO ${res.data}`)
                 document.cookie = `jwt = ${res.data}; max-age = 6000`
-                var lasCookies = document.cookie
-                alert(lasCookies)
+                alert('Usuario valido, puedes pasar a las siguintes paginas')
             }
             else{
                 alert('Usuario invalido')
@@ -79,7 +78,7 @@ export default function HomePage() {
                         }}>Iniciar sesion</button>
                         <br></br>
                         <br></br>
-                        <a className='titulo'>Registrarse</a>
+                        <a href='/registro' className='titulo'>Registrarse</a>
                     </div>
                 </div>
         </div>

@@ -24,8 +24,15 @@ export default function Register(){
             primerNombre: primerNombre,
             apellido: apellido    
         }
-        
-        axios.post('http://localhost:18080/regis',usuario_JSON)
+
+        // console.log(usuario_JSON)
+        axios.post('http://localhost:18080/user/regis',usuario_JSON).then(
+            (res) => {
+                alert('Usuario registrado')
+            }
+        ).catch((res)=>{
+            alert('Existio un problema en el registro')
+        })
     
     }
     
@@ -38,20 +45,20 @@ export default function Register(){
                     <div className="inputs" class="input-group mb-3">
                         <ul>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="nombre" onChange={e => setPrimerNombre(e.target.value)}>Nombre del dueño</span>
-                            <input type="text" class="form-control"  aria-describedby="basic-addon1"/>
+                            <span class="input-group-text" id="nombre">Nombre del dueño</span>
+                            <input type="text" class="form-control"  aria-describedby="basic-addon1" onChange={e => setPrimerNombre(e.target.value)}/>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="apellido" onChange={e => setApellido(e.target.value)}>Apellido del dueño</span>
-                            <input type="text" class="form-control"  aria-describedby="basic-addon1"/>
+                            <span class="input-group-text" id="apellido" >Apellido del dueño</span>
+                            <input type="text" class="form-control"  aria-describedby="basic-addon1" onChange={e => setApellido(e.target.value)}/>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="nombre" onChange={e => setNombre(e.target.value)}>Usuario</span>
-                            <input type="text" class="form-control"  aria-describedby="basic-addon1"/>
+                            <span class="input-group-text" id="nombre" >Usuario</span>
+                            <input type="text" class="form-control"  aria-describedby="basic-addon1" onChange={e => setNombre(e.target.value)}/>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="password" onChange={e => setContrasenia(e.target.value)}>Contraseña</span>
-                            <input type="password" class="form-control"  aria-describedby="basic-addon1"/>
+                            <span class="input-group-text" id="password">Contraseña</span>
+                            <input type="password" class="form-control"  aria-describedby="basic-addon1" onChange={e => setContrasenia(e.target.value)}/>
                         </div>
                         <select class="form-select" aria-label="Default select example" onChange={e => setRol(e.target.value)}>
                             <option selected>Tipo de usuario</option>

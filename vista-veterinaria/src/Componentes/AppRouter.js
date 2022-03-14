@@ -4,10 +4,9 @@ import HomePage from './HomePage';
 import NavBar from './NavBar';
 import MenuPrincipal from './VistaCita/MenuPrincipalC';
 import MenuPrincipalD from './VistaDuenios/MenuPrincipalD';
-import MenuPrincipalM from './VistaMascota/MenuPrincipalM';
 import Register from './VistaMascota/Register';
 import MenuPrincipalMe from './VistaMedicamentos/MenuPrincipalMe.js';
-
+import Registro from './VistaDuenios/VistaDuenio.js'
 export default function AppRouter() {
     return (
         <div>
@@ -19,6 +18,8 @@ export default function AppRouter() {
                         <Route path='/duenios' element={<MenuPrincipalD/>}/>
                         <Route path='/mascotas/' element={<Register/>}/>
                         <Route path='/medicamentos/' element={<MenuPrincipalMe/>}/>
+                        <Route path='/registro/' element={<Registro/>}/>
+
                     </Routes>
                 </div>
         </div>

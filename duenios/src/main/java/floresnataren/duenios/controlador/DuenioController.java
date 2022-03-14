@@ -79,7 +79,7 @@ public class DuenioController {
         }
         return null;
     }
-    @PostMapping(value = "/regis")
+    @PostMapping(value = "/user/regis")
     public void register(@RequestBody Usuario usuario){
         usuarioRepository.save(usuario);
     }
@@ -123,7 +123,7 @@ public class DuenioController {
     }
 
 
-    @PostMapping(value = "/loginUser")
+    @PostMapping(value = "/user/login")
     public String getUser(@RequestBody UsuarioJSON usuario){
 
         Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
