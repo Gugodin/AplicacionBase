@@ -3,6 +3,7 @@ package floresnataren.duenios.controlador;
 import floresnataren.duenios.modelo.DuenioMascota;
 import floresnataren.duenios.modelo.Mascota;
 import floresnataren.duenios.modelo.Usuario;
+import floresnataren.duenios.repositorio.DuenioRepository;
 import floresnataren.duenios.repositorio.UsuarioRepository;
 import floresnataren.duenios.modelo.*;
 
@@ -97,22 +98,6 @@ public class DuenioController {
 
 
 
-    @PostMapping(value = "/loginUser")
-    public Boolean getUser(@RequestBody UsuarioJSON usuario){
-
-        Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
-
-        System.out.println(d);
-
-        if(d != null){
-
-
-            return true;
-        }
-        return null;
-
-
-    }
 
     private String getJWTToken(String username) {
 
