@@ -1,8 +1,11 @@
 package floresnataren.duenios.controlador;
 
-import floresnataren.duenios.modelo.*;
-import floresnataren.duenios.repositorio.DuenioRepository;
+import floresnataren.duenios.modelo.DuenioMascota;
+import floresnataren.duenios.modelo.Mascota;
+import floresnataren.duenios.modelo.Usuario;
 import floresnataren.duenios.repositorio.UsuarioRepository;
+import floresnataren.duenios.modelo.*;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,56 +32,86 @@ public class DuenioController {
     @Autowired
     RestTemplate restTemplate;
 
+
+
     @GetMapping(value = "/listDuenios")
-    public List<Duenio> getListduenio(){
+    public List<Duenio> getListduenio() {
         return duenioRepository.findAll();
     }
 
     @GetMapping(value = "/duenioConMascotas/{idDuenio}")
-    public DuenioMascota getDuenioConMascotas(@PathVariable("idDuenio") int idDuenio){
-        Duenio duenio =  duenioRepository.findByIdDuenio(idDuenio);
-        DuenioMascota duenioMascota= null;
-        if (duenio != null){
+    public DuenioMascota getDuenioConMascotas(@PathVariable("idDuenio") int idDuenio) {
+        Duenio duenio = duenioRepository.findByIdDuenio(idDuenio);
+        DuenioMascota duenioMascota = null;
+        if (duenio != null) {
             duenioMascota = new DuenioMascota(duenio.getIdDuenio(), duenio.getNombre(), duenio.getTelefono(), duenio.getDireccion());
-            Mascota[] mascotas  =restTemplate.getForObject("http://localhost:'9998'/listByIdDuenio/"+duenioMascota.getIdDuenio(), Mascota[].class);
+            Mascota[] mascotas = restTemplate.getForObject("http://localhost:'9998'/listByIdDuenio/" + duenioMascota.getIdDuenio(), Mascota[].class);
             duenioMascota.setMascotas(mascotas);
         }
         return duenioMascota;
     }
+
     @GetMapping(value = "/duenio/direccion")
-    public List<Duenio> getDuenioByDireccion(@RequestBody Duenio duenio){
+    public List<Duenio> getDuenioByDireccion(@RequestBody Duenio duenio) {
         return duenioRepository.findDuenioByDireccion(duenio.getDireccion());
     }
-    @GetMapping(value="/duenio/{idDuenio}")
-    public Duenio getDuenio(@PathVariable("idDuenio") int idDuenio){
+
+    @GetMapping(value = "/duenio/{idDuenio}")
+    public Duenio getDuenio(@PathVariable("idDuenio") int idDuenio) {
         return duenioRepository.findByIdDuenio(idDuenio);
     }
 
     @PostMapping(value = "/duenio/telefono")
-    public List<Duenio> getDuenioByCountry(@RequestBody Duenio duenio){
+    public List<Duenio> getDuenioByCountry(@RequestBody Duenio duenio) {
         return duenioRepository.findAllByTelefono(duenio.getTelefono());
     }
+
     @PostMapping(value = "/duenio/add")
-    public Duenio addDuenio(@RequestBody Duenio duenio){
+    public Duenio addDuenio(@RequestBody Duenio duenio) {
         return duenioRepository.save(duenio);
     }
+
     @PostMapping(value = "/duenio/update")
-    public Duenio updateDuenio(@RequestBody Duenio duenio){
-        if(duenioRepository.findByIdDuenio(duenio.getIdDuenio()) != null){
+    public Duenio updateDuenio(@RequestBody Duenio duenio) {
+        if (duenioRepository.findByIdDuenio(duenio.getIdDuenio()) != null) {
             return duenioRepository.save(duenio);
         }
         return null;
     }
+    @PostMapping(value = "/regis")
+    public void register(@RequestBody Usuario usuario){
+        usuarioRepository.save(usuario);
+    }
+
 
 
     @PostMapping(value = "/duenio/delete")
-    public Boolean deleteDuenio(@RequestBody Duenio duenio){
+    public Boolean deleteDuenio(@RequestBody Duenio duenio) {
         Duenio d = duenioRepository.findByIdDuenio(duenio.getIdDuenio());
-        if(d != null){
+        if (d != null) {
             duenioRepository.delete(d);
             return true;
         }
         return null;
+    }
+
+
+
+    @PostMapping(value = "/loginUser")
+    public Boolean getUser(@RequestBody UsuarioJSON usuario){
+
+        Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
+
+        System.out.println(d);
+
+        if(d != null){
+
+
+            return true;
+        }
+        return null;
+
+
     }
 
     private String getJWTToken(String username) {
@@ -123,6 +156,7 @@ public class DuenioController {
     }
 
 
+    
 
 
 }

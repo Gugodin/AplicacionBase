@@ -25,5 +25,4 @@ public class UsuarioJSON {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
