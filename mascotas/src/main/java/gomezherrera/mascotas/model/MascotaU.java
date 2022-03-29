@@ -20,16 +20,28 @@ public class MascotaU {
     @Column(name = "razon")
     private String razon;
 
+    @Column(name = "idDuenio")
+    private int idDuenio;
+
     public MascotaU(){
 
     }
 
-    public MascotaU(int idMascota, String nombre, String raza, String fechaIngreso, String razon) {
+    public MascotaU(int idMascota, String nombre, String raza, String fechaIngreso, String razon, int idDuenio) {
         this.idMascota = idMascota;
         this.nombre = nombre;
         this.raza = raza;
         this.fechaIngreso = fechaIngreso;
         this.razon = razon;
+        this.idDuenio = idDuenio;
+    }
+
+    public int getIdDuenio() {
+        return idDuenio;
+    }
+
+    public void setIdDuenio(int idDuenio) {
+        this.idDuenio = idDuenio;
     }
 
     public int getIdMascota() {

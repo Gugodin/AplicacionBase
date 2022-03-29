@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -124,14 +124,17 @@ public class DuenioController {
 
 
     @PostMapping(value = "/user/login")
-    public String getUser(@RequestBody UsuarioJSON usuario){
-
+    public List getUser(@RequestBody UsuarioJSON usuario){
+        List resultado = new ArrayList();
         Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
 
         if(d != null){
-
-            
-            return getJWTToken(d.getNombre());
+            System.out.println(d);
+            System.out.println(d.getIdUsuario());
+            resultado.add(d.getIdUsuario());
+            resultado.add(getJWTToken(d.getNombre()));
+            resultado.add(d.getRol());
+            return resultado;
 
         }
 

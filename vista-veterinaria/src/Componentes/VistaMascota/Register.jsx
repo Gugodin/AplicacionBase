@@ -1,12 +1,16 @@
 import React from 'react'
 import axios from 'axios';
 import { useState,useEffect } from 'react';
-import '../assets/css/ab.css'
+import '../assets/css/ab.css';
+import ProductoImagen from '../ProductoImagen';
+import img from '../assets/Imagenes/perro.png';
+
 import HomePage from '../HomePage';
 // import {Routes,Route, withRouter} from 'react-router-dom';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import AppRouter from '../AppRouter';
 import ReactDOM from 'react-dom'
+import MensajeError from '../MensajeError';
 
 export default function RegisterM(){
     const [nombre,setNombre] = useState('')
@@ -14,15 +18,25 @@ export default function RegisterM(){
     const [fecha,setFecha] = useState('')
     const [razon,setRazon] = useState('')
     const [bandera,setBandera] = useState(false)
+    const [idDuenio,setIdDuenio] = useState()
 
     const handleRegistro = () => {
+
+        
+
         const dato = {
             nombre : nombre,
             raza : raza,
             fechaIngreso : fecha,
-            razon : razon
+            razon : razon,
+            idDuenio:localStorage.getItem('id')
         }
-        axios.post('http://localhost:9998/mascota/add', dato)
+        console.log(dato)
+        axios.post('http://localhost:9998/mascota/add', dato).then((res)=>{
+            alert('REGISTRO DE MASCOTA EXITOSO')
+        }).catch((ras)=>{
+            alert('ERROR INTENTELO DE NUEVO')
+        })
     }
 
 
@@ -88,14 +102,7 @@ export default function RegisterM(){
             console.log('ERROR VISTA Entramos')
 
             return (
-                <div>
-                    <div >
-                        <h2 className='titulo'>Error de usuario, necesitas registrarte</h2>
-                        <br />
-                        <a href="/">Dale click para ir al login</a>
-                        
-                    </div>
-                </div>
+                <MensajeError />
             ) 
         }
     }

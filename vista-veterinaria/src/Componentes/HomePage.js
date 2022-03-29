@@ -29,7 +29,10 @@ export default function HomePage() {
             if (res.data){
                 
                 console.log(`ES DATO ${res.data}`)
-                document.cookie = `jwt = ${res.data}; max-age = 6000`
+                document.cookie = `jwt = ${res.data[1]}; max-age = 6000`
+                localStorage.setItem('id',res.data[0])
+                console.log('AAAAAAAAAAAAAAAAAAA')
+                console.log(localStorage.getItem('id'))
                 alert('Usuario valido, puedes pasar a las siguintes paginas')
             }
             else{
