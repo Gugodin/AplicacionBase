@@ -10,6 +10,7 @@ import floresnataren.duenios.modelo.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,13 @@ public class DuenioController {
     public List<Duenio> getListduenio() {
         return duenioRepository.findAll();
     }
+
+    @GetMapping(value = "/getAllUser")
+    public List<Usuario> getListuser() {
+        return usuarioRepository.findAll();
+    }
+
+
 
     @GetMapping(value = "/duenioConMascotas/{idDuenio}")
     public DuenioMascota getDuenioConMascotas(@PathVariable("idDuenio") int idDuenio) {
@@ -96,9 +104,6 @@ public class DuenioController {
         return null;
     }
 
-
-
-
     private String getJWTToken(String username) {
 
         String secretKey = "secret";
@@ -129,8 +134,7 @@ public class DuenioController {
         Usuario d = usuarioRepository.findByNombreAndPassword(usuario.getNombre(),usuario.getPassword());
 
         if(d != null){
-            System.out.println(d);
-            System.out.println(d.getIdUsuario());
+            
             resultado.add(d.getIdUsuario());
             resultado.add(getJWTToken(d.getNombre()));
             resultado.add(d.getRol());
