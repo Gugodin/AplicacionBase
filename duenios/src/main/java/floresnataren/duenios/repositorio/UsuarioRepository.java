@@ -11,6 +11,7 @@ public interface UsuarioRepository extends CrudRepository <Usuario, Integer> {
     Usuario findByNombreAndPassword(String nombre, String password);
     List<Usuario> findAll();
     Usuario save(Usuario user);
+    Usuario findById(int id);
 
     @Override
     void deleteById(Integer integer);

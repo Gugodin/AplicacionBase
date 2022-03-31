@@ -36,10 +36,6 @@ public class DuenioController {
 
 
 
-    @GetMapping(value = "/listDuenios")
-    public List<Duenio> getListduenio() {
-        return duenioRepository.findAll();
-    }
 
     @GetMapping(value = "/getAllUser")
     public List<Usuario> getListuser() {
@@ -93,6 +89,27 @@ public class DuenioController {
     }
 
 
+    @PostMapping(value = "/user/update")
+    public Usuario updateUser(@RequestBody Usuario usuario){
+        if(usuarioRepository.findById(usuario.getIdUsuario()) != null){
+            return usuarioRepository.save(usuario);
+        }
+        return usuario;
+    }
+
+    @GetMapping(value = "/user/listUser")
+    public List<Usuario> getListduenio(){
+        return usuarioRepository.findAll();
+    }
+    @PostMapping(value = "/user/delete")
+    public Boolean deleteUser(@RequestBody Usuario usuario){
+        Usuario d = usuarioRepository.findById(usuario.getIdUsuario());
+        if(d != null){
+            usuarioRepository.delete(d);
+            return true;
+        }
+        return null;
+    }
 
     @PostMapping(value = "/duenio/delete")
     public Boolean deleteDuenio(@RequestBody Duenio duenio) {
