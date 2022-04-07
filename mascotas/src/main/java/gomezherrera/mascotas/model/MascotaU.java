@@ -3,7 +3,6 @@ import javax.persistence.*;
 
 @Entity
 public class MascotaU {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMascota;
@@ -33,14 +32,6 @@ public class MascotaU {
         this.raza = raza;
         this.fechaIngreso = fechaIngreso;
         this.razon = razon;
-        this.idDuenio = idDuenio;
-    }
-
-    public int getIdDuenio() {
-        return idDuenio;
-    }
-
-    public void setIdDuenio(int idDuenio) {
         this.idDuenio = idDuenio;
     }
 
@@ -82,5 +73,13 @@ public class MascotaU {
 
     public void setRazon(String razon) {
         this.razon = razon;
+    }
+
+    public int getIdDuenio() {
+        return idDuenio;
+    }
+
+    public void setIdDuenio(int idDuenio) {
+        this.idDuenio = idDuenio;
     }
 }
